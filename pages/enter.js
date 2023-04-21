@@ -5,7 +5,7 @@ import { useContext } from "react";
 
 const EnterPage = () => {
     const { user, username } = useContext(UserContext);
-    
+
     return (
         <main>
             {user ? 
@@ -36,5 +36,5 @@ const SignOutButton = () => {
 }
 
 const UsernameForm = () => {
-    return <p>test</p>
+    return <p>Username Form</p>
 }
