@@ -1,14 +1,15 @@
 import { UserContext } from "@/lib/context";
 import { googleAuthProvider, auth } from "@/lib/firebase";
 import { signInWithPopup } from "firebase/auth";
-import { useContext } from "react";
+import { useCallback, useContext, useState, useEffect } from "react";
+import UsernameForm from "@/components/UsernameForm";
 
 const EnterPage = () => {
     const { user, username } = useContext(UserContext);
 
     return (
         <main>
-            {user ? 
+            {user ?
                 !username ? <UsernameForm /> : <SignOutButton />
                 :
                 <SignInButton />
@@ -20,21 +21,23 @@ const EnterPage = () => {
 export default EnterPage;
 
 const SignInButton = () => {
-    const signInWithGoogle = () => {
-        signInWithPopup(auth, googleAuthProvider)
+    const signInWithGoogle = async () => {
+        await signInWithPopup(auth, googleAuthProvider)
+            .then((user) => {
+                console.log({user});
+            })
+            .catch((error) => {
+                console.error(error);
+            })
     };
 
     return (
         <button className="btn-google" onClick={signInWithGoogle}>
-            <img src={"/google.png"}/> Sign in with Google
+            <img src={"/google.png"} /> Sign in with Google
         </button>
     )
 }
 
 const SignOutButton = () => {
     return <button onClick={() => auth.signOut()}>Sign Out</button>
-}
-
-const UsernameForm = () => {
-    return <p>Username Form</p>
 }

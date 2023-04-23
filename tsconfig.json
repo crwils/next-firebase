@@ -19,7 +19,7 @@
       "@/*": ["./*"]
     },
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "pages/_app.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "pages/_app.js", "components/UsernameForm.jsx", "lib/hooks.ts"],
   "exclude": ["node_modules"],
   "typescript.autoImportSuggestions.enabled": true
 }
